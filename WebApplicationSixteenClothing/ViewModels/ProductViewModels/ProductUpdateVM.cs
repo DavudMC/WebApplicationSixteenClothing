@@ -4,6 +4,7 @@ namespace WebApplicationSixteenClothing.ViewModels.ProductViewModels
 {
     public class ProductUpdateVM
     {
+        public int Id { get; set; }
         [Required, MaxLength(100), MinLength(3)]
         public string Name { get; set; } = string.Empty;
         [Required, Range(0, 100000000)]

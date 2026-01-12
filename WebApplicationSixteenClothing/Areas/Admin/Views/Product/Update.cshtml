@@ -1,4 +1,6 @@
-﻿@model ProductCreateVM
+﻿
+@model ProductUpdateVM
+
 <div class="container">
     <div class="row">
 
@@ -35,7 +37,7 @@
 
             <div class="form-group">
                 <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                <select asp-for="CategoryId" class="form-select" asp-items="@ViewBag.Categories">
 
                     @* @foreach (Category category in ViewBag.Categories)
                     {
@@ -49,11 +51,12 @@
 
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-warning">Update</button>
         </form>
     </div>
 </div>
-@section Scripts{
+
+@section Scripts {
+
     <partial name="_ValidationScriptsPartial"></partial>
 }
-

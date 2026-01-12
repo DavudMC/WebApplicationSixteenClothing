@@ -1,14 +1,27 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using WebApplicationSixteenClothing.Contexts;
+using WebApplicationSixteenClothing.ViewModels.ProductViewModels;
 
 
 namespace WebApplicationSixteenClothing.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(AppDbContext _context) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            var products = await _context.Products.Select(x => new ProductGetVM()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                ImagePath = x.ImagePath,
+                CategoryName = x.Category.Name,
+                Price = x.Price,
+                Rating = x.Rating
+            }).ToListAsync();
+            return View(products);
         }
     }
 }
