@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -9,7 +10,8 @@ namespace WebApplicationSixteenClothing.Controllers
 {
     public class HomeController(AppDbContext _context) : Controller
     {
-        public async Task<IActionResult> IndexAsync()
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Index()
         {
             var products = await _context.Products.Select(x => new ProductGetVM()
             {
